@@ -14,20 +14,25 @@ angular.module('potatoApp').controller('PotatoesController', function($scope, Po
     $scope.filter = function(e, order){ //ng-click function for sorting buttons
         if ($scope.order == order || $scope.order == '-' + order || $scope.order == order.substr(1)) { // if the button is already chosen
             if ($scope.order.charAt(0) == '-') { // if the sort is already reverse
-                var nonreverse = order.substr(1); //set var nonreverse to the order str without the '-'
+                var nonreverse = $scope.order.substr(1); //set var nonreverse to the order str without the '-'
+                console.log("old", $scope.order)
                 $scope.order = nonreverse; //make the order nonreverse
+                console.log("new", $scope.order)
                 $(e.currentTarget).attr('title', 'Sort Ascending').html(
                     $(e.currentTarget).html().slice(0,-1) + "▴"
                     );
             } else { //if the sort is not already reverse
-                var reverse = '-' + order;
+                var reverse = '-' + $scope.order;
+                console.log("old", $scope.order)
                 $scope.order = reverse; //reverse the order
+                console.log("new", $scope.order)
                 $(e.currentTarget).attr('title', 'Sort Descending').html(
                     $(e.currentTarget).html().slice(0,-1) + "▾"
                     );
             }
         } else { //if clicking on a button different than the one chosen
             $scope.order = order;
+            console.log($scope.order)
             //reset title and arrow on all buttons
             $('.sort-desc').attr('title', 'Sort Descending').each(function() {
                     $(this).html(
