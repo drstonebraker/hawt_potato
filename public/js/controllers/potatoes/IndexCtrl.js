@@ -6,10 +6,6 @@ angular.module('potatoApp').controller('PotatoesController', function($scope, Po
     
     $scope.searching = false;
     
-    var spaces = 0;
-    
-    var oldLength;
-    
     // set filter
     $scope.filter = function(e, order){ //ng-click function for sorting buttons
         if ($scope.order == order || $scope.order == '-' + order || $scope.order == order.substr(1)) { // if the button is already chosen
@@ -53,9 +49,6 @@ angular.module('potatoApp').controller('PotatoesController', function($scope, Po
             $('#query-title').slideUp(100, function() {
                 $('#search-chkbx').attr('checked',false);
                 $scope.searching = false;
-                $('#search-input').css("width", 30);
-                spaces = 0;
-                oldLength = 0;
             });
         }
     } 
@@ -66,7 +59,7 @@ angular.module('potatoApp').controller('PotatoesController', function($scope, Po
     }
     
     $scope.searchClick = function() { //ng-click function for search "🔍" button
-        if (!$scope.searching) {
+        if (!$scope.searching) { //if not already searching
             $('#query-title').slideDown(100);
             $('#search-input').focus();
         } else {
